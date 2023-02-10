@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="../../js/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script  src="./board.js"></script>
+    <link rel="stylesheet" href="board.css" />
+    <script defer type="text/javascript">
+        //전역변수선언
+        function getBoardSold(){
+            $.ajax({
+            type:"GET",//브라우저가 인터셉터 한다 쿼리스트링에 다 나타난다 가로챈다/// POST는 포장해서 준다  뭐가있는지 몰라 무조건전달
+            url:"url",
+            success:function(data){//파라미터 data에는 boardSellAction.html처리된 결과
+                console.log(data);
+                soldProcess(data);
+            },
+            })
+}
+        /* 
+        요청에 대한 응답이 다운로드 되었을 때
+        서버로부터 전달된 상태값이 200번 일때
+        호출되는 함수 =콜백함수 */
+  function soldProcess(data){
+        console.log('soldProcess 호출 => '+data);
+        $("#boardSold").html(`<font size="38">${data}</font>`);
+        const price= $("#price").text()
+        const cost=$("#cost").text()
+        let cashPerBoard = price - cost;
+        let cash = cashPerBoard * newTotal;
+        $("#cash").html(`<font size="38">${cash}</font>`);
+        }//end of soldProcess
+
+    </script>
+  <body>
+      <!-- 생략하면 text/javascript 디폴트값 -->
+    <script>
+        $(document).ready(function(){
+                const btnMargin = $("#btnMargin")                  
+                     btnMargin.bind('click', function(){
+                        //eventparameter.preventDefault();//submit으로 인한 전송처리로 페이지가 새로고침방지
+                    getBoardSold();
+                        alert('버튼클릭');
+    });
+});
+
+      </script>
+      
+    <h2>보드 판매량</h2>
+    <table width="300px" height="80px">
+      <tr>
+        <th width="120px">보드 판매량</th>
+        <td width="180px">
+            <span id="boardSold">10</span>
+        </td>
+      </tr>
+      <!-- 
+	소비자가-구매가=보드 한개당 마진 금액
+	한개당 마진 금액*판매량=마진금액계산
+	 -->
+      <tr>
+        <th>구매가</th>
+        <td><span id="cost">100</span>원</td>//태그는 없고 값은 있는 텍스트 노드
+      </tr>
+      <tr>
+        <th>소비자가</th>
+        <td><span id="price">120</span>원</td>
+      </tr>
+    </table>
+    <h2>마진금액 : <span id="cash">0</span>원</h2>
+    <button type = "submit" id="btnMargin">마진은?</button>
+  </body>
+</html>

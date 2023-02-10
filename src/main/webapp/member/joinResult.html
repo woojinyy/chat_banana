@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>joinResult.html</title>
+</head>
+<body>
+<div id = "d_result"></div>
+<script type="text/javascript">
+const myHeaders = new Headers();
+myHeaders.append("Cookie", "JSESSIONID=A23686397C093BC44C4A034FB4C219A8");
+
+const requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+fetch("http://localhost:9000/member/joinAction.jsp?mem_id=nice&mem_pw=1234", requestOptions)
+  .then(response => response.text())
+  .then(result => {
+	  const dresult = document.querySelector("#d_result");
+	  dresult.innerText=result
+	  
+  })
+  .catch(error => console.log('error', error));
+</script>
+</body>
+</html>
