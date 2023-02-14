@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Basic DataGrid - jQuery EasyUI Demo</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../themes/default/easyui.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../themes/icon.css" />
+    <link rel="stylesheet" type="text/css" href="../demo/demo.css" />
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!-- min = 공백문자 배제 쓰기가 가볍고 기능은 다 갖고있는 -->
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script>
+      getDeptList = () => {
+        console.log("getDeptList 호출");
+        $("#dg_dept").datagrid({
+          //XXX.jsp , XXX.do, XXX.spring
+          url: "./dept.json",
+          method: "get",
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        /* ready = window.onload */ //reday함수의 파라미터로 함수를 전달할 수 있다 = 일급함수
+        
+      });
+    </script>
+
+    <h2>부서관리시스템</h2>
+    <p>The DataGrid is created from markup, no JavaScript code needed.</p>
+    <div style="margin: 20px 0"></div>
+
+    <table
+      id="dg_dept"
+      class="easyui-datagrid"
+      title="부서목록"
+      style="width: 700px; height: 250px"
+      toolbar="#toolbar"
+      pagination="true"
+      data-options="singleSelect:true,collapsible:true,"
+    >
+      <thead>
+        <tr>
+          <th data-options="field:'deptno',width:100">부서번호</th>
+          <th data-options="field:'dname',width:150">부서명</th>
+          <th data-options="field:'loc',width:150,align:'center'">지역</th>
+        </tr>
+      </thead>
+    </table>
+    <div id="toolbar">
+      <a href="javascript:void(0)"   class="easyui-linkbutton"  iconCls="icon-search"   plain="true"  onclick="getDeptList()">조회</a>
+      <a        href="javascript:void(0)"        class="easyui-linkbutton"        iconCls="icon-edit"        plain="true"        onclick="editUser()"        >Edit User</a      >
+      <a	
+        href="javascript:void(0)"
+        class="easyui-linkbutton"
+        iconCls="icon-remove"
+        plain="true"
+        onclick="destroyUser()"
+        >Remove User</a
+      >
+    </div>
+  </body>
+</html>
