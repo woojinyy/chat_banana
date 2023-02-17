@@ -12,6 +12,17 @@
     <servlet-name>HelloServlet</servlet-name>
     <url-pattern>/day1/hello.kh</url-pattern>
     </servlet-mapping>
+    <!-- 02.17추가 -->
+
+    <!--02.16 추가  -->
+    <servlet>
+    <servlet-name>TestServlet</servlet-name>
+	<servlet-class>com.mvc.controller.TestServlet</servlet-class>    
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>TestServlet</servlet-name>
+    <url-pattern>/test/test.do</url-pattern>
+    </servlet-mapping>
 <!-- 안전장치 -->    
     <servlet>
     <servlet-name>DeptServlet</servlet-name>
@@ -19,9 +30,11 @@
     </servlet>
     <servlet-mapping>
     <servlet-name>DeptServlet</servlet-name>
-    <url-pattern>/dept/insertAction.do</url-pattern>
+    <url-pattern>/jEasyUI/dept/insertAction.do</url-pattern>
     </servlet-mapping>
-    
+    <session-config>
+  <session-timeout>10</session-timeout>
+</session-config>
 </web-app>
 
 <!-- 

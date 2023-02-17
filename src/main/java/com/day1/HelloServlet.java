@@ -24,22 +24,36 @@ import org.apache.log4j.Logger;
 //xml문서로 환경설정을 하고 있기 때문이다.
 //class사이의 객체주입 관계도 xml문서로 처리가 가능하다
 public class HelloServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Logger logger = Logger.getLogger(HelloServlet.class);
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 				throws ServletException, IOException
 	{
 		System.out.println("doGet호출");
+		String mem_id=req.getParameter("mem_id");
+		logger.info("사용자가 입력한 아이디는 "+mem_id+"입니다.");
 		logger.info("doGet호출성공");
-		res.setContentType("text/html:charset=UTF-8");
+		res.setContentType("text/html;charset=UTF-8");
+		//인스턴스화에서 메소드를 사용하는 경우는 뭐가 다른걸까?
+		//A a = new A();
+		//text메인타입/html서브타입-브라우저가 번역  태그는 없고 내용만 출력된다
 		PrintWriter out =res.getWriter();
 		String msg ="안녕하세요?";
-		out.print("<font size =28px color=red>"+msg+"</font>");
+		out.print("<font size =28px color=red>"+msg+"</font>");//리소스
 				}
+	//단위테스트가 불가하다
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException
 {
+		res.setContentType("text/html;charset=UTF-8");
+		PrintWriter out =res.getWriter();
+		String msg ="안녕";
+		out.print("<font size =28px color=blue>"+msg+"</font>");
 	logger.info("doPost호출성공");
 }
 	

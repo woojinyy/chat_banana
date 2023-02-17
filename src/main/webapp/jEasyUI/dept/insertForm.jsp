@@ -6,21 +6,8 @@
 <meta charset="UTF-8">
 <title>부서등록 - 다이얼로그</title>
 <%@ include file="../../common/easyUI_common.jsp"%>
-<script type="text/javascript">
-const insertAction = () => {
-	//consol.log("입력호출 성공");
-	consol.log($("#_easyui_textbox_input1").var()+","+$("#_easyui_textbox_input2").var()+","+$("#_easyui_textbox_input3").var());
-	const u_deptno = $("#_easyui_textbox_input1").var();
-	const u_dname = $("#_easyui_textbox_input2").var();
-	const u_loc = $("#_easyui_textbox_input3").var();
-	$.ajax({
-		method:'get',
-		url:'/dept/insertAction.do?deptno='+u_deptno+'&dname='+u_dname+'&loc='+u_loc,
-				success:function(data){
-					console.log("톰캣서버에서 응답으로 보낸 값"+data)				
-				}
-	})
-</script>
+
+
 </head>
 <body>
     <div style="margin:20px 0;"></div>
@@ -40,5 +27,21 @@ const insertAction = () => {
         </div>
         </form>
       </div>
+      <script type="text/javascript">
+const insertAction = () => {
+	//consol.log("입력호출 성공");
+	consol.log($("#_easyui_textbox_input1").val()+","+$("#_easyui_textbox_input2").var()+","+$("#_easyui_textbox_input3").var());
+	const u_deptno = $("#_easyui_textbox_input1").val();
+	const u_dname = $("#_easyui_textbox_input2").val();
+	const u_loc = $("#_easyui_textbox_input3").val();
+	$.ajax({
+		method:'get',
+		url:'/jEasyUI/dept/insertAction.do?deptno='+u_deptno+'&dname='+u_dname+'&loc='+u_loc,
+				success:function(data){
+					console.log("톰캣서버에서 응답으로 보낸 값"+data)				
+				}
+	})
+}
+	</script>
 </body>
 </html>
