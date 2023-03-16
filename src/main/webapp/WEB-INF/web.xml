@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+<web-app xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xmlns="https://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://xmlns.jcp.org/xml/ns/javaee https://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
       <context-param>
         <param-name>log4jConfigLocation</param-name>
         <param-value>/WEB-INF/classes/log4.properties</param-value>
@@ -12,8 +12,29 @@
     <servlet-name>HelloServlet</servlet-name>
     <url-pattern>/day1/hello.kh</url-pattern>
     </servlet-mapping>
-    <!-- 02.17추가 -->
-
+    <!--03.03추가  -->
+    <servlet>
+    <servlet-name>FrontController3</servlet-name>
+	<servlet-class>com.pojo.step3.ActionSupport</servlet-class>    
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>FrontController3</servlet-name>
+    <url-pattern>*.st3</url-pattern><!-- 요청이름이 오든 확장자가 st1으로 끝나면 frontmvc1서블릿이 다 가져간다 -->
+    </servlet-mapping>
+    <!--02.27추가 
+    context-param과 init-param차이
+    context-param은 서버가 가동될 때 한번 읽으면 서버가 종료될 때까지 계속 기억
+    init -param은 서블릿이 요청될 때 마다 새로 읽는다
+     -->
+    <!-- 02.23추가 -->
+    <servlet>
+    <servlet-name>FrontController1</servlet-name>
+	<servlet-class>com.pojo.step1.FrontMVC1</servlet-class>    
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>FrontController1</servlet-name>
+    <url-pattern>*.st1</url-pattern><!-- 요청이름이 오든 확장자가 st1으로 끝나면 frontmvc1서블릿이 다 가져간다 -->
+    </servlet-mapping>
     <!--02.16 추가  -->
     <servlet>
     <servlet-name>TestServlet</servlet-name>
