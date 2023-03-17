@@ -27,7 +27,7 @@
        			}
 	 	}
 	 	out.print("쿠키에서 꺼내온 값"+cmem_id+","+cmem_name);//값이 null이면 로그인 안함
-	 	if(cmem_id==null&&cmem_name==null){
+	 	if(cmem_id==null){
 	 		%>
 	 		<script>
 	 		alert("로그인하세요");
@@ -63,6 +63,9 @@ tetx-decoration:none;
 		 alert(user_id+user_pw);
 		 window.location.href="./login.st3?mem_id="+user_id+"&mem_pw="+user_pw;//get방식
 		}
+		const logout=()=>{
+			window.location.href="./logout.st3";
+		}
 	</script>
 </head>
 <body>
@@ -71,6 +74,11 @@ tetx-decoration:none;
     <div class="easyui-layout" style="width:1000px;height:550px;">
         <!-- 메뉴구성 [로그인화면과 트리메뉴]-->
         <div id="p" data-options="region:'west'" title="West" style="width:200px;padding:10px">
+        <%
+   if(cmem_id==null){
+	   
+  
+        %>
             <!--==============[(로그인화면)]  ==============-->
             <!--  로그인 전에는 id와 비번 입력받는 화면-->
             	<div id="d_login" align="center">
@@ -107,9 +115,33 @@ tetx-decoration:none;
             	});
             	</script>
             	</div>            
-            	
+            <!--==============[(로그인화면 끝)]  ============ -->
+            <%
+   }
+            else{    	
+            		//로그인을 한 상태 입니다.
+            %>
             <!--==============[(로그아웃화면)] ============= -->
-            	<div id="d_logout" align="center">            	</div>
+            	<div id="d_logout" align="center">            
+            	<span><%=cmem_name %>님 환영합니다.</span>
+            	<br/>
+            	<div style ="margin:5px 0px;"></div>
+            	     	<a id="btn_logout" href="javascript:logout()">로그아웃</a>
+            	<script type="text/javascript">
+            	$('#btn_logout').linkbutton({
+            	    iconCls: 'icon-remove'
+            	});
+            	</script>
+            	<a id="btn_join" href="javascript:membership()">정보수정</a>
+            	<script>
+            	$('#btn_join').linkbutton({
+            	    iconCls: 'icon-edit'
+            	});
+            	</script>
+            </div>
+<%
+            }
+%>
         <!-- 메뉴구성 [로그인화면과 트리메뉴]-->
         <!-- 메인화면 [게시판, 온라인시험,쪽지관리(받은,보낸),회원관리(회원목록 회원등록 회원삭제),우편번호검색기]-->
             					<div style ="margin:5px 0px;"></div>

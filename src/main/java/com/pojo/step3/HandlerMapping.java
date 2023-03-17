@@ -131,10 +131,23 @@ public class HandlerMapping {
 		}
 		// 회원관리 - 이순신
 		else if ("member".equals(upmu[0])) {
+			logger.info("회원관리 호출"+upmu[1]);
 			controller = new MemberController();
-			if ("login".equals(upmu[1])) { //
-			obj = controller.login(req, res);//멤버 업무
-			
+			if ("login".equals(upmu[1])) { 
+			obj = controller.login(req, res);
+			if (obj instanceof ModelAndView) {
+				return (ModelAndView) obj;
+			}
+			// 리턴타입이 String인 경우
+			else if(obj instanceof String)
+				return (String)obj;
+			}
+		}//end of login
+	
+		else if ("member".equals(upmu[1])) { //
+			controller = new MemberController();
+			if ("logout".equals(upmu[1])) { 
+			obj = controller.logout(req, res);//멤버 업무
 			if (obj instanceof ModelAndView) {
 				return (ModelAndView) obj;
 			}
@@ -143,6 +156,7 @@ public class HandlerMapping {
 				return (String)obj;
 			}
 		}
+		//end of logout
 		// 주문관리 - 강감찬
 		else if ("order".equals(upmu[0])) {
 

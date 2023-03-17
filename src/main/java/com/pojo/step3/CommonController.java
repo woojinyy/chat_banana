@@ -37,7 +37,7 @@ public class CommonController implements Controller3 {
 			return mav;
 		}
 
-	
+//나랑 관련없는 업무 메소드가 너~~~무많아 인터페이스를 implements했으니까	
 	@Override
 	public Object jsonBoardList(HttpServletRequest req, HttpServletResponse res) {
 		// TODO Auto-generated method stub
@@ -95,6 +95,13 @@ public class CommonController implements Controller3 {
 
 	@Override
 	public Object login(HttpServletRequest req, HttpServletResponse res) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Object logout(HttpServletRequest req, HttpServletResponse res) {
 		// TODO Auto-generated method stub
 		return null;
 	}
